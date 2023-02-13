@@ -9,7 +9,7 @@ class Node
     }
     Node() 
     {}
-    void displayNode() 
+    void display() 
     {
         System.out.print("[" + data + "] ");
     }
@@ -41,7 +41,7 @@ class LinkedList
         Node current = first;
         while (current != null) 
         {
-            current.displayNode();
+            current.display();
             current = current.next;
         }
         System.out.println("");
@@ -54,40 +54,40 @@ class LinkedList
     {
         if (head  == null || head .next == null)
             return head ;
-        Node a = head ;
-        Node b = head .next;
-        while ((b != null) && (b.next != null)) 
+        Node data1 = head ;
+        Node data2 = head .next;
+        while ((data2 != null) && (data2.next != null)) 
         {
             head  = head .next;
-            b = (b.next).next;
+            data2 = (data2.next).next;
         }
-        b = head .next;
+        data2 = head .next;
         head .next = null;
-        return merge(MergeSort(a), MergeSort(b));
+        return merge(MergeSort(data1), MergeSort(data2));
     }
  
     
-    Node merge(Node a, Node b) 
+    Node merge(Node data1, Node data2) 
     {
         Node temp = new Node();
         Node head = temp;
-        Node c = head;
-        while ((a != null) && (b != null)) 
+        Node var = head;
+        while ((data1 != null) && (data2 != null)) 
         {
-            if (a.data <= b.data) 
+            if (data1.data <= data2.data) 
             {
-                c.next = a;
-                c = a;
-                a = a.next;
+                var.next = data1;
+                var = data1;
+                data1 = data1.next;
             }
             else 
             {
-                c.next = b;
-                c = b;
-                b = b.next;
+               var.next = data2;
+                var = data2;
+                data2 = data2.next;
             }
         }
-        c.next = (a == null) ? b : a;
+        var.next = (data1== null) ? data2 : data1;
         return head.next;
     }
 }
@@ -101,7 +101,7 @@ class mergesortusinglinkedlist {
         int n = sc.nextInt();
         for (int i = 0; i < n; i++)
             obj.insert(Math.abs(numbers.nextInt(50)));
-        System.out.println("Before sorting :");
+        System.out.println("before sorting :");
         obj.display();
         obj.append(obj.MergeSort(obj.extractFirst()));
         System.out.println("After sorting :");
